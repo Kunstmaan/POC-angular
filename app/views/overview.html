@@ -1,0 +1,38 @@
+<h1>Overview</h1>
+
+<form>
+    <div class="control-group">
+        <label class="control-label" for="filterName">Name</label>
+        <div class="controls">
+            <input id="filterName" type="text" value="200" ng-model="filter.name" bs-typeahead="typeahead" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="filterMarkets">Market</label>
+        <div class="controls">
+            <label class="checkbox" ng-repeat="market in markets">
+                <input type="checkbox" ng-model="filter.markets[market]"> {{ market }}
+            </label>
+        </div>
+    </div>
+</form>
+
+<hr />
+
+<table class="table table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Market</th>
+        <th>Average Quotation</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in data">
+            <td>{{ item.name }}</td>
+            <td>{{ item.market }}</td>
+            <td>{{ item.getAverageQuotation() }}</td>
+            <td><a href="{{ path('stock_item_path', {item: item.name}) }}">detail</a></td>
+        </tr>
+    </tbody>
+</table>
+<a href="{{ path('add_stock_item_path') }}" class="btn btn-primary">New</a>

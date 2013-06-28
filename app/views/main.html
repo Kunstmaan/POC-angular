@@ -1,0 +1,5 @@
+<select ng-model="filter">
+    <option value="">---</option>
+    <option value="{{ item.getName() }}" ng-repeat="item in allData">{{ item.getName() }}</option>
+</select>
+<kuma-graph value="data"></kuma-graph>

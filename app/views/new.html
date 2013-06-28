@@ -1,0 +1,38 @@
+<h1>New</h1>
+<form name="newStockItemForm" novalidate ng-submit="addStockItem(newStockItem, newStockItemForm)">
+    <div class="alert alert-error" ng-show="newStockItemForm.$invalid">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error!</strong> Please fix the issues
+    </div>
+
+    <div class="alert alert-success" ng-show="newStockItemForm.$valid">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Well done!</strong> You can now safely save this form!
+    </div>
+
+    <div class="control-group" ng-class="{ error: newStockItemForm.name.$invalid }">
+        <label class="control-label" for="stockItemName">Name *</label>
+        <div class="controls">
+            <input name="name" id="stockItemName" type="text" ng-model="newStockItem.name" required kuma-unique />
+            <span class="error" ng-show="!newStockItemForm.name.$error.unique && newStockItemForm.name.$error.required">This is a required field</span>
+            <span class="error" ng-show="newStockItemForm.name.$error.unique">There is already a stock item with this name</span>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{ error: newStockItemForm.market.$invalid }">
+        <label class="control-label" for="stockItemMarket">Market *</label>
+        <div class="controls">
+            <input name="market" id="stockItemMarket" type="text" ng-model="newStockItem.market" required />
+            <span class="error" ng-show="newStockItemForm.market.$error.required">This is a required field</span>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{ error: newStockItemForm.quotation.$invalid }">
+        <label class="control-label" for="stockItemQuotation">Quotation *</label>
+        <div class="controls">
+            <input name="quotation" id="stockItemQuotation" type="number" ng-model="newStockItem.quotation" required />
+            <span class="error" ng-show="newStockItemForm.quotation.$error.required">This is a required field</span>
+            <span class="error" ng-show="newStockItemForm.quotation.$error.number">This field should be numeric</span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-disabled="!newStockItemForm.$valid">Save</button>
+</form>

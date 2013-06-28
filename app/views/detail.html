@@ -1,0 +1,15 @@
+<h1>Overview {{item.name}}</h1>
+<h2>Last hour</h2>
+<kuma-graph value="item"></kuma-graph>
+<p class="pull-right"><small>Average: {{ item.getAverageQuotation() }}</small></p>
+
+<h2>Add quotation</h2>
+<form>
+    <div class="control-group">
+        <label class="control-label" for="formQuotation">Quotation</label>
+        <div class="controls">
+            <input id="formQuotation" type="number" value="200" ng-model="form.quotation" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="addQuotation()">Add quotation</button>
+</form>
